@@ -212,7 +212,7 @@ class StateManagementBot(ActivityHandler):
 
             
     
-    def get_order_status(order_id):
+    def get_consignment_delivery_status(order_id):
         response_message = ''
         cursor = None
         # if order_id is None:
@@ -258,7 +258,7 @@ class StateManagementBot(ActivityHandler):
         return response.choices[0].message.content
     
 
-    def seek_assistance(query):
+    def perform_search_based_qna(query):
         
         l_config =  DefaultConfig()
 
@@ -316,8 +316,8 @@ class StateManagementBot(ActivityHandler):
 
     functions = [
         {
-            "name": "get_order_status",
-            "description": "Get the current status of delivery of the order",
+            "name": "get_consignment_delivery_status",
+            "description": "fetch real time delivery status update of consignments in an order, like expected delivery date, current location, status, etc.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -330,8 +330,8 @@ class StateManagementBot(ActivityHandler):
             },
         },
         {
-            "name": "seek_assistance",
-            "description": "Seek general assistance or register complaint from the AI assistant",
+            "name": "perform_search_based_qna",
+            "description": "Seek general assistance or register complaint with the AI assistant. This requires performing a search based QnA on the query provided by the user.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -346,8 +346,8 @@ class StateManagementBot(ActivityHandler):
     ]
 
     available_functions = {
-    "get_order_status": get_order_status,
-    "seek_assistance": seek_assistance
+    "get_consignment_delivery_status": get_consignment_delivery_status,
+    "perform_search_based_qna": perform_search_based_qna
     }
 
 
